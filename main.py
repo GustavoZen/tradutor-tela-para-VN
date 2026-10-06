@@ -1,6 +1,7 @@
 from screen.selector import select_screen_area
 from screen.capture import capture_region
 from ocr.reader import TesseractReader
+from translation.translator import GoogleTranslatorAdapter
 
 
 def main():
@@ -24,8 +25,18 @@ def main():
     reader = TesseractReader(lang="eng")
     text = reader.read(image)
 
+    if not text:
+        print("Nenhum texto encontrado.")
+        return
+
     print("Texto reconhecido:")
-    print(text if text else "(nenhum texto encontrado)")
+    print(text)
+
+    translator = GoogleTranslatorAdapter(source="auto", target="pt")
+    translated = translator.translate(text)
+
+    print("\nTradução:")
+    print(translated)
 
 
 if __name__ == "__main__":
