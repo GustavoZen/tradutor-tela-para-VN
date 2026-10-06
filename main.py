@@ -1,5 +1,6 @@
 from screen.selector import select_screen_area
 from screen.capture import capture_region
+from ocr.reader import TesseractReader
 
 
 def main():
@@ -19,6 +20,12 @@ def main():
     image.save("capture.png")
 
     print("Captura salva em capture.png")
+
+    reader = TesseractReader(lang="eng")
+    text = reader.read(image)
+
+    print("Texto reconhecido:")
+    print(text if text else "(nenhum texto encontrado)")
 
 
 if __name__ == "__main__":
