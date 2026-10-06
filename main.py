@@ -1,4 +1,5 @@
 from screen.selector import select_screen_area
+from screen.capture import capture_region
 
 
 def main():
@@ -13,7 +14,12 @@ def main():
     print(f"Screen: {screen_width}x{screen_height}")
     print(f"Area: x={x}, y={y}, width={width}, height={height}")
 
+    image = capture_region(x, y, width, height)
+
+    image.save("capture.png")
+
+    print("Captura salva em capture.png")
+
 
 if __name__ == "__main__":
     main()
-    #Próximos passos
