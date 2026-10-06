@@ -1,10 +1,10 @@
-# Tradutor de Tela em Tempo Real
+# Tradutor de Tela para VN's
 
 Ferramenta que lê o texto de uma área da tela com OCR, traduz e mostra a tradução numa janela sobreposta, atualizando sozinha sempre que o texto muda.
 
 ## Objetivo
 
-Este é um projeto de **estudo**. A meta de longo prazo é chegar a um software capaz de traduzir **qualquer Visual Novel** enquanto ela é jogada, sem depender de patches de tradução ou de ferramentas específicas de cada engine.
+Este é um projeto de **estudo**. A meta de longo prazo é chegar a um software capaz de traduzir  **qualquer Visual Novel** enquanto ela é jogada, sem depender de patches de tradução ou de ferramentas específicas de cada engine.
 
 A estratégia é construir em etapas pequenas, entendendo cada parte antes de avançar:
 
