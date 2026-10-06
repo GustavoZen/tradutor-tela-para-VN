@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Capturas de teste
+capture.png
+
+# PyInstaller
+build/
+dist/
+
+# Cópia local do Tesseract para empacotar
+Tesseract-OCR/
