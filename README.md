@@ -18,6 +18,20 @@ Etapas:
 - [ ] Atalhos de teclado (pausar, reselecionar a área)
 - [ ] Gerar executável para outras pessoas usarem
 
+## Por que ler a tela?
+
+Existem caminhos mais precisos para traduzir uma Visual Novel. O principal é extrair os arquivos de texto do jogo (scripts), traduzi-los e reinseri-los na forma de um patch. Quando essa tradução já existe, ela costuma ter qualidade muito superior: é feita com contexto, revisada por pessoas e integrada ao jogo.
+
+Esse caminho, porém, nem sempre está disponível ou é prático:
+
+- **Nem toda VN tem tradução** para o idioma desejado, e produzir uma exige ferramentas específicas para cada engine, além de muito tempo.
+- **Patches podem ser enormes.** Projetos completos, como o de *Umineko no Naku Koro ni*, chegam a cerca de 15 GB, porque também substituem imagens, vozes e outros recursos do jogo.
+- **Os arquivos podem estar compactados ou criptografados**, o que torna a extração uma tarefa de engenharia reversa.
+
+Este projeto segue um **método alternativo**: em vez de mexer nos arquivos do jogo, ele lê o texto exatamente como aparece na tela. Assim, funciona com qualquer VN (e, em princípio, com qualquer programa), sem modificar nada e sem downloads adicionais.
+
+A contrapartida é a qualidade: erros de OCR e tradução automática sem contexto geram resultados inferiores a uma tradução humana. A proposta não é substituir os patches, e sim oferecer uma opção para quando eles não existem ou não compensam, e melhorar essa opção aos poucos.
+
 ## Como funciona
 
 ```
