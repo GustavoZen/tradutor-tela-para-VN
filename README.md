@@ -6,7 +6,7 @@ Ferramenta que lê o texto de uma área da tela com OCR, traduz e mostra a tradu
 
 Este é um projeto de **estudo**. A meta de longo prazo é chegar a um software capaz de traduzir  **qualquer Visual Novel** enquanto ela é jogada, sem depender de patches de tradução ou de ferramentas específicas de cada engine.
 
-A estratégia é construir em etapas pequenas, entendendo cada parte antes de avançar:
+Etapas:
 
 - [x] Selecionar uma área da tela
 - [x] Capturar a imagem dessa área
