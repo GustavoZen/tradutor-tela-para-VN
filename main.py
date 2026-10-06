@@ -1,7 +1,33 @@
+import queue
+import threading
+import time
+
 from screen.selector import select_screen_area
 from screen.capture import capture_region
 from ocr.reader import TesseractReader
 from translation.translator import GoogleTranslatorAdapter, MyMemoryTranslatorAdapter
+from ui.overlay import TranslationOverlay
+
+
+def watch_region(x, y, width, height, reader, translator, results, interval=1.0):
+    last_text = ""
+
+    while True:
+        image = capture_region(x, y, width, height)
+
+        # Junta as linhas e remove espaços extras: evita traduzir de novo
+        # só porque o OCR quebrou a linha diferente
+        text = " ".join(reader.read(image).split())
+
+        if text and text != last_text:
+            last_text = text
+
+            try:
+                results.put(translator.translate(text))
+            except Exception as error:
+                results.put(f"Erro na tradução: {error}")
+
+        time.sleep(interval)
 
 
 def main():
@@ -13,30 +39,22 @@ def main():
 
     screen_width, screen_height, x, y, width, height = result
 
-    print(f"Screen: {screen_width}x{screen_height}")
-    print(f"Area: x={x}, y={y}, width={width}, height={height}")
-
-    image = capture_region(x, y, width, height)
-
-    image.save("capture.png")
-
-    print("Captura salva em capture.png")
-
     reader = TesseractReader(lang="eng")
-    text = reader.read(image)
-
-    if not text:
-        print("Nenhum texto encontrado.")
-        return
-
-    print("Texto reconhecido:")
-    print(text)
-
     translator = MyMemoryTranslatorAdapter(source="en-US", target="pt-BR")
-    translated = translator.translate(text)
+    results = queue.Queue()
 
-    print("\nTradução:")
-    print(translated)
+    # daemon=True: a thread termina junto com o programa quando a janela fecha
+    worker = threading.Thread(
+        target=watch_region,
+        args=(x, y, width, height, reader, translator, results),
+        daemon=True
+    )
+    worker.start()
+
+    # A janela fica logo acima da área (borda de baixo em y - 5),
+    # para não entrar na própria captura
+    overlay = TranslationOverlay(x, y - 5, width)
+    overlay.run(results)
 
 
 if __name__ == "__main__":
