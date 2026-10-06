@@ -1,7 +1,7 @@
 from screen.selector import select_screen_area
 from screen.capture import capture_region
 from ocr.reader import TesseractReader
-from translation.translator import GoogleTranslatorAdapter
+from translation.translator import GoogleTranslatorAdapter, MyMemoryTranslatorAdapter
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
     print("Texto reconhecido:")
     print(text)
 
-    translator = GoogleTranslatorAdapter(source="auto", target="pt")
+    translator = MyMemoryTranslatorAdapter(source="en-US", target="pt-BR")
     translated = translator.translate(text)
 
     print("\nTradução:")
